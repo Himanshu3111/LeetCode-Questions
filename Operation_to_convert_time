@@ -1,0 +1,19 @@
+class Solution(object):
+    def convertTime(self, current, correct):
+        """
+        :type current: str
+        :type correct: str
+        :rtype: int
+        """
+        def to_minutes(t):
+            hours, minutes = t.split(":")
+            return int(hours) * 60 + int(minutes)
+
+        diff = to_minutes(correct) - to_minutes(current)
+
+        count = 0
+        for step in [60, 15, 5, 1]:
+            count += diff // step
+            diff = diff % step
+
+        return count
